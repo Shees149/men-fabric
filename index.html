@@ -1302,7 +1302,7 @@ Shop Mulla Jents, Bazar-e-Faisal, Kareemabad
         });
     </script>
 
-    <script>
+    <!-- <script>
 document.querySelectorAll('.whatsapp-btn').forEach(btn => {
     btn.addEventListener('click', () => {
 
@@ -1332,6 +1332,44 @@ Address: ${address}`;
         window.open(url, "_blank");
     });
 });
+</script> -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const buttons = document.querySelectorAll('.whatsapp-btn');
+
+    buttons.forEach(function(btn) {
+        btn.onclick = function() {
+
+            const product = btn.getAttribute("data-product");
+
+            const name = prompt("Enter your name:");
+            const phone = prompt("Enter your phone number:");
+            const address = prompt("Enter your address:");
+
+            if (!name || !phone || !address) {
+                alert("Please fill all details");
+                return;
+            }
+
+            const message = "Hello, I want to order:\n\n" +
+                "Product: " + product + "\n" +
+                "Name: " + name + "\n" +
+                "Phone: " + phone + "\n" +
+                "Address: " + address;
+
+            const whatsappNumber = "923153498837";
+
+            const url = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
+
+            window.location.href = url; // 👈 IMPORTANT (no error)
+        };
+    });
+
+});
+
 </script>
 </body>
 </html>
